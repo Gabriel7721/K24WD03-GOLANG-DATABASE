@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Mario",
+    "email": "mario@mail.com"
+  },
+  {
+    "id": 2,
+    "name": "Mario's brother Luigi",
+    "email": "brother-luigi@mail.com"
+  },
+  {
+    "id": 3,
+    "name": "Toad",
+    "email": "toad@mail.com"
+  }
+]
