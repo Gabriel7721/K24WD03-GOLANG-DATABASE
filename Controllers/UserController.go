@@ -34,4 +34,5 @@ func UpdateUserById(res http.ResponseWriter, req *http.Request) {
 func DeleteUserById(res http.ResponseWriter, req *http.Request) {
 	id := strings.TrimPrefix(req.URL.Path, "/users/")
 	services.DeleteUser(id)
+	json.NewEncoder(res).Encode(map[string]string{"Message": "Deleted user with id: " + id + " success!"})
 }

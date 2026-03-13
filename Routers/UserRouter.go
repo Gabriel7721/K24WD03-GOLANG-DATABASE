@@ -2,7 +2,6 @@ package routers
 
 import (
 	controllers "SliceServer/Controllers"
-	"fmt"
 	"net/http"
 )
 
@@ -21,10 +20,11 @@ func UserRouter() {
 			controllers.GetUserById(w, r)
 		case "PUT":
 			controllers.UpdateUserById(w, r)
-		// case "DELETE":
-		// 	controllers.DeleteUserById(w, r)
+		case "DELETE":
+			controllers.DeleteUserById(w, r)
 		default:
-			fmt.Println("Invalid Method")
+			// fmt.Println("Invalid Method")
+			http.Error(w, "Invalid Method", http.StatusMethodNotAllowed)
 		}
 	})
 }
