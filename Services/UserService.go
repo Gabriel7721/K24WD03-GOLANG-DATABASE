@@ -32,6 +32,13 @@ func Create(newUser models.User) models.User {
 	return newUser
 }
 
+func GetUserById(id string) models.User {
+	var user models.User
+	objId, _ := bson.ObjectIDFromHex(id)
+	GetCollection().FindOne(context.TODO(), bson.M{"_id": objId})
+	return user
+}
+
 // func LoadUsers() {
 // 	file, _ := os.Open(filePath)
 // 	defer file.Close()
