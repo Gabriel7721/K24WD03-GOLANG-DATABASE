@@ -23,20 +23,14 @@ func GetUserById(res http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(res).Encode(u)
 }
 
-// func UpdateUserById(res http.ResponseWriter, req *http.Request) {
-// 	id, _ := strconv.Atoi(strings.TrimPrefix(req.URL.Path, "/users/"))
-// 	var update models.User
-// 	json.NewDecoder(req.Body).Decode(&update)
-// 	for i, user := range services.Users {
-// 		if user.ID == id {
-// 			update.ID = id
-// 			services.Users[i] = update
-// 			services.SaveUsers()
-// 			json.NewEncoder(res).Encode(update)
-// 			return
-// 		}
-// 	}
-// }
+func UpdateUserById(res http.ResponseWriter, req *http.Request) {
+	id := strings.TrimPrefix(req.URL.Path, "/users/")
+	var update models.User
+	json.NewDecoder(req.Body).Decode(&update)
+	u := services.UpdateUserById(id, update)
+	json.NewEncoder(res).Encode(u)
+}
+
 // func DeleteUserById(res http.ResponseWriter, req *http.Request) {
 // 	id, _ := strconv.Atoi(strings.TrimPrefix(req.URL.Path, "/users/"))
 // 	for i, user := range services.Users {
