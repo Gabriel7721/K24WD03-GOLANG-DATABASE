@@ -39,6 +39,19 @@ func GetUserById(id string) models.User {
 	return user
 }
 
+func UpdateUserById(id string, updateUser models.User) models.User {
+	var user models.User
+	objId, _ := bson.ObjectIDFromHex(id)
+	update := bson.M{
+		"$set": bson.M{
+			"name":  updateUser.Name,
+			"email": updateUser.Email,
+		},
+	}
+	GetCollection().FindOneAndUpdate(context.TODO(), bson.M{"_id": objId}, update).Decode(&user)
+	return user
+}
+
 // func LoadUsers() {
 // 	file, _ := os.Open(filePath)
 // 	defer file.Close()
