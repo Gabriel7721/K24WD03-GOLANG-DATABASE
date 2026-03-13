@@ -35,7 +35,7 @@ func Create(newUser models.User) models.User {
 func GetUserById(id string) models.User {
 	var user models.User
 	objId, _ := bson.ObjectIDFromHex(id)
-	GetCollection().FindOne(context.TODO(), bson.M{"_id": objId})
+	GetCollection().FindOne(context.TODO(), bson.M{"_id": objId}).Decode(&user)
 	return user
 }
 
