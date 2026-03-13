@@ -9,6 +9,7 @@ import (
 	_ "github.com/joho/godotenv/autoload"
 	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 var Users []models.User
@@ -48,7 +49,8 @@ func UpdateUserById(id string, updateUser models.User) models.User {
 			"email": updateUser.Email,
 		},
 	}
-	GetCollection().FindOneAndUpdate(context.TODO(), bson.M{"_id": objId}, update).Decode(&user)
+	opts := options.FindOneAndUpdate().SetReturnDocument(options.After)
+	GetCollection().FindOneAndUpdate(context.TODO(), bson.M{"_id": objId}, update, opts).Decode(&user)
 	return user
 }
 

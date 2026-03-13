@@ -19,8 +19,8 @@ func UserRouter() {
 		switch r.Method {
 		case "GET":
 			controllers.GetUserById(w, r)
-		// case "PUT":
-		// 	controllers.UpdateUserById(w, r)
+		case "PUT":
+			controllers.UpdateUserById(w, r)
 		// case "DELETE":
 		// 	controllers.DeleteUserById(w, r)
 		default:
