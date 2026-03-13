@@ -54,6 +54,11 @@ func UpdateUserById(id string, updateUser models.User) models.User {
 	return user
 }
 
+func DeleteUser(id string) {
+	objId, _ := bson.ObjectIDFromHex(id)
+	GetCollection().FindOneAndDelete(context.TODO(), bson.M{"_id": objId})
+}
+
 // func LoadUsers() {
 // 	file, _ := os.Open(filePath)
 // 	defer file.Close()

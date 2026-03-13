@@ -31,13 +31,7 @@ func UpdateUserById(res http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(res).Encode(u)
 }
 
-// func DeleteUserById(res http.ResponseWriter, req *http.Request) {
-// 	id, _ := strconv.Atoi(strings.TrimPrefix(req.URL.Path, "/users/"))
-// 	for i, user := range services.Users {
-// 		if user.ID == id {
-// 			services.Users = append(services.Users[:i], services.Users[i+1:]...)
-// 			services.SaveUsers()
-// 			return
-// 		}
-// 	}
-// }
+func DeleteUserById(res http.ResponseWriter, req *http.Request) {
+	id := strings.TrimPrefix(req.URL.Path, "/users/")
+	services.DeleteUser(id)
+}
