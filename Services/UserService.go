@@ -40,6 +40,14 @@ func GetUserById(id string) models.User {
 	return user
 }
 
+func UserExistsById(id string) bool {
+	user := GetUserById(id)
+	if user.ID.IsZero() {
+		return false
+	}
+	return true
+}
+
 func UpdateUserById(id string, updateUser models.User) models.User {
 	var user models.User
 	objId, _ := bson.ObjectIDFromHex(id)
